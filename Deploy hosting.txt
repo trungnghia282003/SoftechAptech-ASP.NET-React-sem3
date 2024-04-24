@@ -1,0 +1,85 @@
+I. DEPLOY DATABASE
+
+1. Databases
+After logging in to the administration, click on the "Databases" icon
+
+2. List of Databases
+https://help.monsterasp.net/link/6#bkmrk-here-you-can-see-a-l
+ 
+Here you can see a list of your databases
+
+3. Select Database
+Now click on the database you want to back up. In our case, it will be, for example, db1109.
+
+In the database detail, click on the Backups management icon at the bottom
+
+4. Backup Database
+
+In the backups management, simply click on Create Backup and you're done. The backup is ready for download or future restore."
+
+https://help.monsterasp.net/books/databases/page/backup-database
+
+II. DEPLOY .NET CORE WEB API 
+
+1. Initial Setup
+Create new website from our hosting Control panel.
+
+2. Create Project in Visual Studio
+Select ASP.NET Core Web API project and click to Next.
+Fill and select additional informations and click to Create.
+
+3. Enable Swagger in Production environment
+If you want Swagger to be available after publishing API to Website, you need comment this condition:
+if (app.Environment.IsDevelopment())
+Result can be like this:
+// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+    // Swagger will be available also on production hosting
+    app.UseSwagger();
+    app.UseSwaggerUI();
+//}
+4. Download WebDeploy publish profile
+
+First you need activate WebDeploy account in our hosting Control panel and then download WebDeploy publishing profile (.publishSettings).
+
+5. Prepare publish Project
+Right-click on your project in Solution Explorer and select "Publish."
+Click on Import profile and select WebDeploy profile file (.publishSettings) which you downloaded from hosting Control panel.
+
+6. Publish to server
+In final step click "Publish" button. After this action will be your ASP.NET Core Web API project published to Website.
+
+7. Open Swagger
+Open result in your web browser and that go to URL /swagger/index.html to check Swagger.
+
+https://help.monsterasp.net/books/deploy/page/how-to-deploy-net-core-web-api-with-swagger-using-visual-studio
+
+III. DEPLOY REACTJS
+1. Initial Setup
+Create a website from our hosting Control panel
+2. Install FileZilla Client
+If you haven't already, download and install FileZilla Client from official website: https://filezilla-project.org/
+3. Obtain FTP/SFTP credentials
+On left menu select Deploy (FTP/WebDeploy/Git) and you will see Website FTP/SFTP access details.
+4. FileZilla Client
+Start FileZilla FTP client and on Top please fill all fields and click Quickconnect.
+Host = siteXXX.siteasp.net
+Username = siteXXX
+Password = *****
+Port = 21
+Once you are connected, you'll see two panes. Left panel displays your local files and right panel shows Website content on server.
+5. Upload you Application Files
+In left panel navigate to directory where your application files are stored on your local computer.
+https://help.monsterasp.net/link/18#bkmrk-select-files-and-fol
+ 
+Select files and folders from left panel that you want to upload to the server
+Drag and drop them into right panel ( website root directory \wwwroot ). FileZilla will begin transferring files to our server.
+
+https://help.monsterasp.net/books/deploy/page/how-to-deploy-website-content-via-ftpsftp
+
+6. Upload configuration web.config file
+To run Node.js application, you must also upload web.config file to /wwwroot directory which contains necessary configuration for Node.js.
+
+https://help.monsterasp.net/books/nodejs/page/how-to-run-nodejs-application
+
